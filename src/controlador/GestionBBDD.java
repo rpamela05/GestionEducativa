@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import modelo.Alumno;
 import modelo.Curso;
+import modelo.Profesor;
 
 public class GestionBBDD {
 	
@@ -178,6 +179,165 @@ public class GestionBBDD {
 		}
 	}
 	
+	/**
+     * Inserta un nuevo profesor en las tablas 'persona' y 'docente'.
+     * @param Objeto Profesor que contiene los datos del profesor a insertar.
+     * @return true si la inserción fue exitosa, false si ocurrió un error.
+     */
+	public boolean InsertarProfesor(Profesor p) {
+		try {
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/gestion_educativa", "root", "");
+			Statement consulta = conexion.createStatement();
+			consulta.executeUpdate("insert into persona (id, nombres, apellidos, correo) " + "values ('" + p.getId()
+					+ "','" + p.getNombre() + "','" + p.getApellido() + "','" + p.getCorreo() + "')");
+			consulta.executeUpdate("insert into docente (id, especialidad) " + "values ('" + p.getId() + "','"
+					+ p.getEspecialidad() + "') ");
+			conexion.close();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+     *Lista profesores de la base de datos según los filtros de búsqueda y orden.
+     * @param codigo Filtro para el código (ID) del profesor.
+     * @param nombre Filtro para el nombre completo del profesor.
+     * @param especialidad Filtro para la especialidad del profesor.
+     * @param orden Criterio de ordenamiento (por ID ascendente o descendente).
+     * @return ArrayList de tipo profesor con los profesores que cumplen los criterios de búsqueda, o null si ocurre un error.
+     */
+	public ArrayList<Profesor> ListarProfesor(String codigo, String nombre, String especialidad, String orden) {
+		ArrayList<Profesor> arrPro = new ArrayList<>();
+		Profesor p = null;
+		Connection conexion;
+		try {
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost/gestion_educativa", "root", "");
+			PreparedStatement ps = conexion.prepareStatement(
+					"select p.*,pf.especialidad from docente pf " + "inner join persona p " + "on pf.id =p.id "
+							+ "where pf.id like ? and concat(p.nombres,' ',p.apellidos) like ? "
+							+ "and pf.especialidad like ? order by p.id "+orden);
+			ps.setString(1,"%"+ codigo+"%");
+			ps.setString(2,"%"+ nombre+"%");
+			ps.setString(3,"%"+ especialidad+"%");
+			
+			ResultSet registro = ps.executeQuery();
+			while (registro.next()) {
+				p = new Profesor();
+
+				p.setId(registro.getString(1));
+				p.setNombre(registro.getNString(2));
+				p.setApellido(registro.getString(3));
+				p.setCorreo(registro.getString(4));
+				p.setEspecialidad(registro.getString(5));
+
+				arrPro.add(p);
+			}
+			conexion.close();
+			return arrPro;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
+	/**
+     *Consulta los datos de un profesor específico por su ID.
+     * @param Identificador del profesor a consultar.
+     * @return Profesor con los datos encontrados, o null si no se encuentra o hay error.
+     */
+	public Profesor ConsultarProfesor(String id) {
+		Profesor prof = null;
+		try {
+			prof = new Profesor();
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/gestion_educativa", "root", "");
+			PreparedStatement ps = conexion.prepareStatement("select p.*,pf.especialidad from docente pf "
+					+ "inner join persona p " + "on pf.id =p.id " + "where pf.id=?");
+
+			ps.setString(1, id);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				prof.setId(rs.getString(1));
+				prof.setNombre(rs.getNString(2));
+				prof.setApellido(rs.getString(3));
+				prof.setCorreo(rs.getString(4));
+				prof.setEspecialidad(rs.getString(5));
+			}
+
+			conexion.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return prof;
+	}
+	
+	 /**
+     * Actualiza la información de un profesor en las tablas 'persona' y 'docente'.
+     * @param Objeto Profesor con los nuevos datos a actualizar.
+     * @return true si la actualización fue exitosa, false en caso de error.
+     */
+	public boolean ActualizarProfesor(Profesor p) {
+		try {
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/gestion_educativa", "root", "");
+			PreparedStatement ps = conexion
+					.prepareStatement("UPDATE persona " + " SET nombres=?, apellidos=?, correo=? " + " WHERE id=?");
+
+			ps.setString(1, p.getNombre());
+			ps.setString(2, p.getApellido());
+			ps.setString(3, p.getCorreo());
+			ps.setString(4, p.getId());
+
+			ps.executeUpdate();
+
+			PreparedStatement ps2 = conexion.prepareStatement("UPDATE docente " + "SET especialidad=? " + "WHERE id=?");
+
+			ps2.setString(1, p.getEspecialidad());
+			ps2.setString(2, p.getId());
+
+			ps2.executeUpdate();
+
+			conexion.close();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+     * Elimina un profesor de las tablas 'docente' y 'persona' por su ID.
+     * @param Id Identificador del profesor que se desea eliminar.
+     * @return true si la eliminación fue exitosa, false si ocurrió un error.
+     */
+	public boolean EliminarProfesor(String Id) {
+		try {
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/gestion_educativa", "root", "");
+			PreparedStatement ps = conexion.prepareStatement("DELETE FROM docente " + "WHERE id=?");
+
+			ps.setString(1, Id);
+
+			ps.executeUpdate();
+
+			PreparedStatement ps2 = conexion.prepareStatement("DELETE FROM persona " + "WHERE id=?");
+
+			ps2.setString(1, Id);
+
+			ps2.executeUpdate();
+
+			conexion.close();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	 /**
      * Inserta un nuevo curso en la base de datos.
