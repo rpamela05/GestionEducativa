@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import modelo.Alumno;
 import modelo.Curso;
+import modelo.Matricula;
 import modelo.Profesor;
 
 public class GestionBBDD {
@@ -511,4 +512,160 @@ public class GestionBBDD {
 		return num;
 	}
 
+	/**
+     * Inserta una nueva matrícula en la base de datos.
+     * @param m Objeto Matricula con los datos a insertar.
+     * @return true si la inserción fue exitosa, false si ocurrió un error.
+     */
+	public boolean InsertarMatricula(Matricula m) {
+		try {
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/gestion_educativa", "root", "");
+			Statement consulta = conexion.createStatement();
+			consulta.executeUpdate("insert into matricula (codigo_curso, codigo_alumno, fecha) " + "values ("
+					+ m.getCodCurso() + ",'" + m.getCodAlumno() + "','" + m.getFecha() + "')");
+			conexion.close();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+     * Lista las matrículas filtradas por código, alumno, curso, estado y orden.
+     * @param codigo Filtro por ID de matrícula.
+     * @param alumno Filtro por nombre completo del alumno.
+     * @param curso Filtro por nombre del curso.
+     * @param estado Estado booleano de la matrícula.
+     * @param orden Ordenamiento de resultados (ascendente o descendente).
+     * @return Lista de matrículas encontradas o null si ocurre un error.
+     */
+	public ArrayList<Matricula> ListarMatricula(String codigo, String alumno, String curso, boolean estado, String orden) {
+		ArrayList<Matricula> arrMat = new ArrayList<>();
+		Matricula m = null;
+		Connection conexion;
+		try {
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost/gestion_educativa", "root", "");
+			
+
+			PreparedStatement ps = conexion.prepareStatement(
+					"select m.id, c.codigo, c.nombre, a.id, CONCAT(a.nombres,' ',a.apellidos),m.fecha,m.estado from matricula m "
+							+ "inner join curso c  " + "inner join persona a "
+							+ "on m.codigo_curso =c.codigo and a.id =m.codigo_alumno "
+							+ "where m.id like ? and CONCAT(a.nombres,' ',a.apellidos) like ? "
+							+ "and c.nombre like ?"
+							+ "and m.estado = ? "
+							+ "order by m.id "+orden);
+			
+			ps.setString(1, "%"+codigo+"%");
+			ps.setString(2, "%"+alumno+"%");
+			ps.setString(3, "%"+curso+"%");
+			ps.setBoolean(4, estado);
+			
+			ResultSet rs=ps.executeQuery();
+			
+			while (rs.next()) {
+				m = new Matricula();
+
+				m.setId(rs.getInt(1));
+				m.setCodCurso(rs.getInt(2));
+				m.setNomCurso(rs.getString(3));
+				m.setCodAlumno(rs.getString(4));
+				m.setNomAlumno(rs.getString(5));
+				m.setFecha(rs.getString(6));
+				m.setEstado(rs.getBoolean(7));
+				arrMat.add(m);
+			}
+			conexion.close();
+			return arrMat;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
+	/**
+     * Consulta los datos de una matrícula específica por su ID.
+     * @param id Identificador de la matrícula.
+     * @return Objeto Matricula con los datos encontrados o null si no se encuentra.
+     */
+	public Matricula ConsultarMatricula(String id) {
+		Matricula mat = null;
+		try {
+			mat = new Matricula();
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/gestion_educativa", "root", "");
+			PreparedStatement ps = conexion.prepareStatement(
+					"select m.id, c.nombre, CONCAT(a.nombres,' ',a.apellidos),m.fecha,m.estado from matricula m "
+							+ "inner join curso c " + "inner join persona a "
+							+ "on m.codigo_curso =c.codigo and a.id =m.codigo_alumno " + "where m.id=?");
+
+			ps.setString(1, id);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				mat.setId(rs.getInt(1));
+				mat.setNomCurso(rs.getString(2));
+				mat.setNomAlumno(rs.getString(3));
+				mat.setFecha(rs.getString(4));
+				mat.setEstado(rs.getBoolean(5));
+			}
+
+			conexion.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mat;
+	}
+	
+	/**
+     * Actualiza los datos de una matrícula existente.
+     * @param m Objeto Matricula con los datos actualizados.
+     * @return true si la actualización fue exitosa, false si ocurrió un error.
+     */
+	public boolean ActualizarMatricula(Matricula m) {
+		try {
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/gestion_educativa", "root", "");
+			PreparedStatement ps = conexion.prepareStatement("UPDATE matricula SET fecha=?, estado=? WHERE id=?");
+
+			ps.setString(1, m.getFecha());
+			ps.setBoolean(2, m.isEstado());
+			ps.setInt(3, m.getId());
+
+			ps.executeUpdate();
+
+			conexion.close();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+     * Obtiene el valor máximo actual del campo 'id' en la tabla matrícula.
+     * @return Valor entero máximo del ID o 0 si no hay registros o ocurrió un error.
+     */
+	public int MaxCodigoMatricula() {
+		int num = 0;
+		try {
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/gestion_educativa", "root", "");
+			PreparedStatement ps = conexion.prepareStatement("select max(id) from  matricula");
+
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				num = rs.getInt(1);
+			}
+
+			conexion.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return num;
+	}
 }
