@@ -182,7 +182,7 @@ public class GestionBBDD {
 	
 	/**
      * Inserta un nuevo profesor en las tablas 'persona' y 'docente'.
-     * @param Objeto Profesor que contiene los datos del profesor a insertar.
+     * @param p Objeto Profesor que contiene los datos del profesor a insertar.
      * @return true si la inserción fue exitosa, false si ocurrió un error.
      */
 	public boolean InsertarProfesor(Profesor p) {
@@ -246,7 +246,7 @@ public class GestionBBDD {
 	
 	/**
      *Consulta los datos de un profesor específico por su ID.
-     * @param Identificador del profesor a consultar.
+     * @param id Identificador del profesor a consultar.
      * @return Profesor con los datos encontrados, o null si no se encuentra o hay error.
      */
 	public Profesor ConsultarProfesor(String id) {
@@ -279,7 +279,7 @@ public class GestionBBDD {
 	
 	 /**
      * Actualiza la información de un profesor en las tablas 'persona' y 'docente'.
-     * @param Objeto Profesor con los nuevos datos a actualizar.
+     * @param p Objeto Profesor con los nuevos datos a actualizar.
      * @return true si la actualización fue exitosa, false en caso de error.
      */
 	public boolean ActualizarProfesor(Profesor p) {
@@ -342,7 +342,7 @@ public class GestionBBDD {
 	
 	 /**
      * Inserta un nuevo curso en la base de datos.
-     * @param Objeto Curso con los datos a insertar.
+     * @param c Objeto Curso con los datos a insertar.
      * @return true si la operación fue exitosa, false si ocurrió un error.
      */
 	public boolean InsertarCurso(Curso c) {
