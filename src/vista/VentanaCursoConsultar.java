@@ -26,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Color;
 
 public class VentanaCursoConsultar extends JPanel {
 
@@ -42,6 +43,7 @@ public class VentanaCursoConsultar extends JPanel {
 	 * Create the panel.
 	 */
 	public VentanaCursoConsultar() {
+		setBackground(new Color(51, 204, 255));
 		setLayout(null);
 		
 		JLabel lblHoras = new JLabel("0");
@@ -56,10 +58,11 @@ public class VentanaCursoConsultar extends JPanel {
 		tableInfo = new JTable();
 		scrollPane.setViewportView(tableInfo);
 		
-		modeloTabla.setColumnIdentifiers(new Object[] { "Código", "Curso", "N.° Horas", "Profesor"});
+		modeloTabla.setColumnIdentifiers(new Object[] { "Código", "Asignatura", "N.° Horas", "Profesor"});
 		tableInfo.setModel(modeloTabla);
 		
 		JLabel lblNewLabel = new JLabel("Código");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(40, 10, 46, 14);
 		add(lblNewLabel);
 		
@@ -86,6 +89,7 @@ public class VentanaCursoConsultar extends JPanel {
 		add(txtCurso);
 		
 		JLabel lblNombre = new JLabel("Curso");
+		lblNombre.setForeground(Color.WHITE);
 		lblNombre.setBounds(97, 10, 55, 14);
 		add(lblNombre);
 		
@@ -104,10 +108,13 @@ public class VentanaCursoConsultar extends JPanel {
 		add(cmbProfesor);
 		
 		JLabel lblGenero = new JLabel("Profesor");
+		lblGenero.setForeground(Color.WHITE);
 		lblGenero.setBounds(356, 10, 46, 14);
 		add(lblGenero);
 		
 		JRadioButton rbAsce = new JRadioButton("Ascendente");
+		rbAsce.setForeground(Color.WHITE);
+		rbAsce.setBackground(new Color(51, 204, 255));
 		rbAsce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				orden="asc";
@@ -119,6 +126,8 @@ public class VentanaCursoConsultar extends JPanel {
 		add(rbAsce);
 		
 		JRadioButton rbDesce = new JRadioButton("Descendente");
+		rbDesce.setForeground(Color.WHITE);
+		rbDesce.setBackground(new Color(51, 204, 255));
 		rbDesce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				orden="desc";
@@ -137,6 +146,7 @@ public class VentanaCursoConsultar extends JPanel {
 		add(separator);
 		
 		JLabel lblNewLabel_1 = new JLabel("N.° Horas");
+		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setBounds(224, 10, 91, 14);
 		add(lblNewLabel_1);
 		
@@ -145,6 +155,7 @@ public class VentanaCursoConsultar extends JPanel {
 		cargarComboProfesor(cmbProfesor);
 		
 		JSlider sldHoras = new JSlider();
+		sldHoras.setBackground(new Color(51, 204, 255));
 		sldHoras.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				horas= sldHoras.getValue()+"";

@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class VentanaCursoEliminar extends JPanel {
 
@@ -26,9 +27,11 @@ public class VentanaCursoEliminar extends JPanel {
 	 * Create the panel.
 	 */
 	public VentanaCursoEliminar() {
+		setBackground(new Color(51, 204, 255));
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Código");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(78, 52, 57, 14);
 		add(lblNewLabel);
 		
@@ -43,10 +46,12 @@ public class VentanaCursoEliminar extends JPanel {
 		add(txtNombre);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre");
+		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setBounds(78, 85, 65, 14);
 		add(lblNewLabel_1);
 		
 		JLabel Horas = new JLabel("Horas");
+		Horas.setForeground(Color.WHITE);
 		Horas.setBounds(78, 118, 65, 14);
 		add(Horas);
 		
@@ -56,6 +61,7 @@ public class VentanaCursoEliminar extends JPanel {
 		add(txtHoras);
 		
 		JLabel lblNewLabel_3 = new JLabel("Profesor");
+		lblNewLabel_3.setForeground(Color.WHITE);
 		lblNewLabel_3.setBounds(78, 151, 65, 14);
 		add(lblNewLabel_3);
 		
@@ -69,18 +75,20 @@ public class VentanaCursoEliminar extends JPanel {
 		cargarComboProfesor(cmbProfesor);
 		
 		JButton btnNewButton_1 = new JButton("Eliminar");
+		btnNewButton_1.setBackground(new Color(24, 127, 220));
+		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				boolean correcto = false;
-				int valor = JOptionPane.showConfirmDialog(null, "¿Desea eliminar curso?","Confirmar",JOptionPane.YES_NO_OPTION);
+				int valor = JOptionPane.showConfirmDialog(null, "¿Desea eliminar asignatura?","Confirmar",JOptionPane.YES_NO_OPTION);
 				if (valor == JOptionPane.OK_OPTION) {
 					GestionBBDD bd = new GestionBBDD();
 					correcto = bd.EliminarCurso(txtCodigo.getText());
 					if (correcto) {
-						JOptionPane.showMessageDialog(null, "Curso eliminado correctamente.");
+						JOptionPane.showMessageDialog(null, "Asignatura eliminada correctamente.");
 					} else {
-						JOptionPane.showMessageDialog(null, "Hubo un problema... curso no eliminado");
+						JOptionPane.showMessageDialog(null, "Hubo un problema... asignatura no eliminada");
 					}
 				}
 				txtCodigo.setText("");
@@ -98,6 +106,8 @@ public class VentanaCursoEliminar extends JPanel {
 		btnNewButton_1.setEnabled(false);
 		
 		JButton btnNewButton = new JButton("Buscar");
+		btnNewButton.setBackground(new Color(24, 127, 220));
+		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtCodigo.setEditable(false);
@@ -113,7 +123,7 @@ public class VentanaCursoEliminar extends JPanel {
 					Curso cur = bd.ConsultarCurso(id);
 					
 					if(cur.getCodigo().isEmpty()) {
-						JOptionPane.showMessageDialog(null, "No se encontro el curso", "Advertencia",
+						JOptionPane.showMessageDialog(null, "No se encontro la asignatura", "Advertencia",
 								JOptionPane.WARNING_MESSAGE);
 						txtCodigo.setEditable(true);
 					}else {
@@ -133,6 +143,8 @@ public class VentanaCursoEliminar extends JPanel {
 		add(btnNewButton);
 		
 		JButton btnNewButton_2 = new JButton("Cancelar");
+		btnNewButton_2.setBackground(new Color(24, 127, 220));
+		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtCodigo.setEditable(true);

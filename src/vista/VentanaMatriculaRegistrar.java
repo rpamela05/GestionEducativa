@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import java.awt.Color;
 
 public class VentanaMatriculaRegistrar extends JPanel {
 
@@ -26,10 +27,12 @@ public class VentanaMatriculaRegistrar extends JPanel {
 	 * Create the panel.
 	 */
 	public VentanaMatriculaRegistrar() {
+		setBackground(new Color(51, 204, 255));
 		setToolTipText("");
 		setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Código");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(98, 77, 46, 14);
 		add(lblNewLabel);
 
@@ -39,10 +42,12 @@ public class VentanaMatriculaRegistrar extends JPanel {
 		txtCodigo.setColumns(10);
 
 		JLabel lblNewLabel_1 = new JLabel("Alumno");
+		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setBounds(98, 110, 65, 14);
 		add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Curso");
+		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setBounds(98, 143, 89, 14);
 		add(lblNewLabel_2);
 		
@@ -65,6 +70,8 @@ public class VentanaMatriculaRegistrar extends JPanel {
 		
 		
 		JButton btnNewButton = new JButton("Registrar");
+		btnNewButton.setBackground(new Color(24, 127, 220));
+		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Date fechaActual = Date.valueOf(LocalDate.now());
@@ -120,6 +127,8 @@ public class VentanaMatriculaRegistrar extends JPanel {
 		add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Borrar");
+		btnNewButton_1.setBackground(new Color(24, 127, 220));
+		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cmbAlumno.setSelectedIndex(0);

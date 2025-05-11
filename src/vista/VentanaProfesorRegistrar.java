@@ -11,6 +11,7 @@ import modelo.Profesor;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class VentanaProfesorRegistrar extends JPanel {
 
@@ -25,10 +26,12 @@ public class VentanaProfesorRegistrar extends JPanel {
 	 * Create the panel.
 	 */
 	public VentanaProfesorRegistrar() {
+		setBackground(new Color(51, 204, 255));
 		setToolTipText("");
 		setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("ID");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(99, 35, 46, 14);
 		add(lblNewLabel);
 
@@ -38,6 +41,7 @@ public class VentanaProfesorRegistrar extends JPanel {
 		txtId.setColumns(10);
 
 		JLabel lblNewLabel_1 = new JLabel("Nombre");
+		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setBounds(99, 68, 65, 14);
 		add(lblNewLabel_1);
 
@@ -47,6 +51,7 @@ public class VentanaProfesorRegistrar extends JPanel {
 		txtNombre.setColumns(10);
 
 		JLabel lblNewLabel_2 = new JLabel("Apellidos");
+		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setBounds(99, 101, 65, 14);
 		add(lblNewLabel_2);
 
@@ -56,6 +61,7 @@ public class VentanaProfesorRegistrar extends JPanel {
 		txtApellido.setColumns(10);
 
 		JLabel lblNewLabel_3 = new JLabel("Correo");
+		lblNewLabel_3.setForeground(Color.WHITE);
 		lblNewLabel_3.setBounds(99, 134, 65, 14);
 		add(lblNewLabel_3);
 
@@ -65,10 +71,13 @@ public class VentanaProfesorRegistrar extends JPanel {
 		txtCorreo.setColumns(10);
 
 		JLabel lblNewLabel_4 = new JLabel("Especialidad");
+		lblNewLabel_4.setForeground(Color.WHITE);
 		lblNewLabel_4.setBounds(99, 167, 83, 14);
 		add(lblNewLabel_4);
 
 		JButton btnNewButton = new JButton("Registrar");
+		btnNewButton.setBackground(new Color(24, 127, 220));
+		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!txtNombre.getText().isEmpty() && !txtApellido.getText().isEmpty() && !txtCorreo.getText().isEmpty()
@@ -109,6 +118,8 @@ public class VentanaProfesorRegistrar extends JPanel {
 		add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Borrar");
+		btnNewButton_1.setBackground(new Color(24, 127, 220));
+		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtId.setText("");

@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class VentanaAlumnoActualizar extends JPanel {
 
@@ -25,9 +26,11 @@ public class VentanaAlumnoActualizar extends JPanel {
 	 * Create the panel.
 	 */
 	public VentanaAlumnoActualizar() {
+		setBackground(new Color(51, 204, 255));
 		setLayout(null);
 
 		JLabel lblNewLabel_1 = new JLabel("Nombre");
+		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setBounds(80, 63, 65, 14);
 		add(lblNewLabel_1);
 
@@ -42,10 +45,12 @@ public class VentanaAlumnoActualizar extends JPanel {
 		add(txtApellidos);
 
 		JLabel lblNewLabel_2 = new JLabel("Apellidos");
+		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setBounds(80, 96, 65, 14);
 		add(lblNewLabel_2);
 
 		JLabel lblNewLabel = new JLabel("ID");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(80, 30, 65, 14);
 		add(lblNewLabel);
 
@@ -67,10 +72,12 @@ public class VentanaAlumnoActualizar extends JPanel {
 		cmbGenero.addItem("Otro");
 
 		JLabel lblNewLabel_4 = new JLabel("Género");
+		lblNewLabel_4.setForeground(Color.WHITE);
 		lblNewLabel_4.setBounds(80, 162, 65, 14);
 		add(lblNewLabel_4);
 
 		JLabel lblNewLabel_3 = new JLabel("Correo");
+		lblNewLabel_3.setForeground(Color.WHITE);
 		lblNewLabel_3.setBounds(80, 129, 65, 14);
 		add(lblNewLabel_3);
 
@@ -82,6 +89,8 @@ public class VentanaAlumnoActualizar extends JPanel {
 
 
 		JButton btnNewButton_1 = new JButton("Actualizar");
+		btnNewButton_1.setForeground(Color.WHITE);
+		btnNewButton_1.setBackground(new Color(24, 127, 220));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Alumno alm = new Alumno();
@@ -132,6 +141,8 @@ public class VentanaAlumnoActualizar extends JPanel {
 		
 
 		JButton btnNewButton = new JButton("Buscar");
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(24, 127, 220));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtId.setEditable(false);
@@ -177,6 +188,8 @@ public class VentanaAlumnoActualizar extends JPanel {
 		add(btnNewButton);
 
 		JButton btnNewButton_2 = new JButton("Cancelar");
+		btnNewButton_2.setBackground(new Color(24, 127, 220));
+		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtId.setEditable(true);

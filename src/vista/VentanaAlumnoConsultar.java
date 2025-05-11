@@ -19,6 +19,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
+import java.awt.Color;
 
 public class VentanaAlumnoConsultar extends JPanel {
 
@@ -34,6 +35,7 @@ public class VentanaAlumnoConsultar extends JPanel {
 	 * Create the panel.
 	 */
 	public VentanaAlumnoConsultar() {
+		setBackground(new Color(51, 204, 255));
 		setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -58,10 +60,12 @@ public class VentanaAlumnoConsultar extends JPanel {
 		txtCodigo.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Código");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(31, 10, 46, 14);
 		add(lblNewLabel);
 
 		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setForeground(Color.WHITE);
 		lblNombre.setBounds(187, 10, 55, 14);
 		add(lblNombre);
 
@@ -77,6 +81,7 @@ public class VentanaAlumnoConsultar extends JPanel {
 		add(txtNombre);
 
 		JLabel lblGenero = new JLabel("Genero");
+		lblGenero.setForeground(Color.WHITE);
 		lblGenero.setBounds(393, 10, 46, 14);
 		add(lblGenero);
 
@@ -97,6 +102,8 @@ public class VentanaAlumnoConsultar extends JPanel {
 		
 
 		JRadioButton rbAsce = new JRadioButton("Ascendente");
+		rbAsce.setForeground(Color.WHITE);
+		rbAsce.setBackground(new Color(51, 204, 255));
 		rbAsce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ordenFiltro="asc";
@@ -107,6 +114,8 @@ public class VentanaAlumnoConsultar extends JPanel {
 		add(rbAsce);
 
 		JRadioButton rbDesce = new JRadioButton("Descendente");
+		rbDesce.setForeground(Color.WHITE);
+		rbDesce.setBackground(new Color(51, 204, 255));
 		rbDesce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ordenFiltro="desc";

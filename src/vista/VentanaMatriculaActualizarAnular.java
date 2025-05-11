@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JCheckBox;
+import java.awt.Color;
 
 public class VentanaMatriculaActualizarAnular extends JPanel {
 
@@ -26,9 +27,11 @@ public class VentanaMatriculaActualizarAnular extends JPanel {
 	 * Create the panel.
 	 */
 	public VentanaMatriculaActualizarAnular() {
+		setBackground(new Color(51, 204, 255));
 		setLayout(null);
 
 		JLabel lblNewLabel_1 = new JLabel("Alumno");
+		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setBounds(79, 78, 65, 14);
 		add(lblNewLabel_1);
 
@@ -43,10 +46,12 @@ public class VentanaMatriculaActualizarAnular extends JPanel {
 		add(txtCurso);
 
 		JLabel lblNewLabel_2 = new JLabel("Curso");
+		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setBounds(79, 111, 84, 14);
 		add(lblNewLabel_2);
 
 		JLabel lblNewLabel = new JLabel("Código");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(79, 45, 65, 14);
 		add(lblNewLabel);
 
@@ -60,10 +65,13 @@ public class VentanaMatriculaActualizarAnular extends JPanel {
 		add(dFecha);
 
 		JCheckBox jcbActivo = new JCheckBox("¿Activo?");
+		jcbActivo.setForeground(Color.WHITE);
+		jcbActivo.setBackground(new Color(51, 204, 255));
 		jcbActivo.setBounds(79, 172, 97, 23);
 		add(jcbActivo);
 
 		JLabel lblNewLabel_3 = new JLabel("Fecha");
+		lblNewLabel_3.setForeground(Color.WHITE);
 		lblNewLabel_3.setBounds(79, 144, 65, 14);
 		add(lblNewLabel_3);
 
@@ -73,6 +81,8 @@ public class VentanaMatriculaActualizarAnular extends JPanel {
 		jcbActivo.setEnabled(false);
 
 		JButton btnNewButton_1 = new JButton("Actualizar");
+		btnNewButton_1.setBackground(new Color(24, 127, 220));
+		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean seleccionar;
@@ -123,6 +133,8 @@ public class VentanaMatriculaActualizarAnular extends JPanel {
 		
 
 		JButton btnNewButton = new JButton("Buscar");
+		btnNewButton.setBackground(new Color(24, 127, 220));
+		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtCodigo.setEditable(false);
@@ -168,6 +180,8 @@ public class VentanaMatriculaActualizarAnular extends JPanel {
 		add(btnNewButton);
 
 		JButton btnNewButton_2 = new JButton("Cancelar");
+		btnNewButton_2.setBackground(new Color(24, 127, 220));
+		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtCodigo.setEditable(true);

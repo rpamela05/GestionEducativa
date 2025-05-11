@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import java.awt.Color;
 
 public class VentanaCursoRegistrar extends JPanel {
 
@@ -26,10 +27,12 @@ public class VentanaCursoRegistrar extends JPanel {
 	 * Create the panel.
 	 */
 	public VentanaCursoRegistrar() {
+		setBackground(new Color(51, 204, 255));
 		setToolTipText("");
 		setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Código");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(99, 58, 46, 14);
 		add(lblNewLabel);
 
@@ -39,6 +42,7 @@ public class VentanaCursoRegistrar extends JPanel {
 		txtCodigo.setColumns(10);
 
 		JLabel lblNewLabel_1 = new JLabel("Nombre");
+		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setBounds(99, 91, 65, 14);
 		add(lblNewLabel_1);
 
@@ -48,6 +52,7 @@ public class VentanaCursoRegistrar extends JPanel {
 		txtNombre.setColumns(10);
 
 		JLabel lblNewLabel_2 = new JLabel("N.º de horas");
+		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setBounds(99, 124, 89, 14);
 		add(lblNewLabel_2);
 
@@ -57,6 +62,7 @@ public class VentanaCursoRegistrar extends JPanel {
 		txtHoras.setColumns(10);
 
 		JLabel lblNewLabel_3 = new JLabel("Profesor");
+		lblNewLabel_3.setForeground(Color.WHITE);
 		lblNewLabel_3.setBounds(99, 157, 65, 14);
 		add(lblNewLabel_3);
 		
@@ -83,6 +89,8 @@ public class VentanaCursoRegistrar extends JPanel {
 		
 		
 		JButton btnNewButton = new JButton("Registrar");
+		btnNewButton.setBackground(new Color(24, 127, 220));
+		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!txtNombre.getText().isEmpty() && !txtHoras.getText().isEmpty() 
@@ -97,14 +105,14 @@ public class VentanaCursoRegistrar extends JPanel {
 					
 					boolean correcto = false;
 					
-					int valor=JOptionPane.showConfirmDialog(null, "¿Desea agregar un nuevo curso?");
+					int valor=JOptionPane.showConfirmDialog(null, "¿Desea agregar una nueva asignatura?");
 					if (valor==JOptionPane.OK_OPTION) {
 						GestionBBDD bd= new GestionBBDD();
 						correcto=bd.InsertarCurso(cur);
 						if(correcto) {
-							JOptionPane.showMessageDialog(null, "Curso agregado correctamente.");
+							JOptionPane.showMessageDialog(null, "Asignatura agregada correctamente.");
 						}else {
-							JOptionPane.showMessageDialog(null, "Hubo un problema... curso no agregado");
+							JOptionPane.showMessageDialog(null, "Hubo un problema... asignatura no agregada");
 						}
 						txtCodigo.setText(cargarNumeroCodigo());
 						txtHoras.setText("");
@@ -121,6 +129,8 @@ public class VentanaCursoRegistrar extends JPanel {
 		add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Borrar");
+		btnNewButton_1.setBackground(new Color(24, 127, 220));
+		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

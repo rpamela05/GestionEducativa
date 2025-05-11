@@ -20,6 +20,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
+import java.awt.Color;
 
 public class VentanaProfesorConsultar extends JPanel {
 
@@ -35,6 +36,7 @@ public class VentanaProfesorConsultar extends JPanel {
 	 * Create the panel.
 	 */
 	public VentanaProfesorConsultar() {
+		setBackground(new Color(51, 204, 255));
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -48,6 +50,8 @@ public class VentanaProfesorConsultar extends JPanel {
 		tableInfo.setModel(modeloTabla);
 		
 		JRadioButton rbAsce = new JRadioButton("Ascendente");
+		rbAsce.setBackground(new Color(51, 204, 255));
+		rbAsce.setForeground(Color.WHITE);
 		rbAsce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ordenFiltro="asc";
@@ -58,6 +62,8 @@ public class VentanaProfesorConsultar extends JPanel {
 		add(rbAsce);
 		
 		JRadioButton rbDesce = new JRadioButton("Descendente");
+		rbDesce.setBackground(new Color(51, 204, 255));
+		rbDesce.setForeground(Color.WHITE);
 		rbDesce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ordenFiltro="desc";
@@ -94,14 +100,17 @@ public class VentanaProfesorConsultar extends JPanel {
 		add(txtCodigo);
 		
 		JLabel lblNewLabel = new JLabel("Código");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(40, 10, 46, 14);
 		add(lblNewLabel);
 		
 		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setForeground(Color.WHITE);
 		lblNombre.setBounds(196, 10, 55, 14);
 		add(lblNombre);
 		
 		JLabel lblGenero = new JLabel("Especialidad");
+		lblGenero.setForeground(Color.WHITE);
 		lblGenero.setBounds(394, 10, 86, 14);
 		add(lblGenero);
 		

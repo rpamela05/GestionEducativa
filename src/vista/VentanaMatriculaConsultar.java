@@ -35,6 +35,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 public class VentanaMatriculaConsultar extends JPanel {
 
@@ -51,6 +52,7 @@ public class VentanaMatriculaConsultar extends JPanel {
 	 * Create the panel.
 	 */
 	public VentanaMatriculaConsultar() {
+		setBackground(new Color(51, 204, 255));
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -64,6 +66,8 @@ public class VentanaMatriculaConsultar extends JPanel {
 		tableInfo.setModel(modeloTabla);
 		
 		JRadioButton rbDesce = new JRadioButton("Descendente");
+		rbDesce.setBackground(new Color(51, 204, 255));
+		rbDesce.setForeground(Color.WHITE);
 		rbDesce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				orden="desc";
@@ -74,6 +78,8 @@ public class VentanaMatriculaConsultar extends JPanel {
 		add(rbDesce);
 		
 		JRadioButton rbAsce = new JRadioButton("Ascendente");
+		rbAsce.setBackground(new Color(51, 204, 255));
+		rbAsce.setForeground(Color.WHITE);
 		rbAsce.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				orden="asc";
@@ -96,6 +102,7 @@ public class VentanaMatriculaConsultar extends JPanel {
 		add(txtAlumno);
 		
 		JLabel lblNombre = new JLabel("Alumno");
+		lblNombre.setForeground(Color.WHITE);
 		lblNombre.setBounds(174, 10, 55, 14);
 		add(lblNombre);
 		
@@ -111,6 +118,7 @@ public class VentanaMatriculaConsultar extends JPanel {
 		add(txtCodigo);
 		
 		JLabel lblNewLabel = new JLabel("Código");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(40, 10, 55, 14);
 		add(lblNewLabel);
 		
@@ -120,6 +128,8 @@ public class VentanaMatriculaConsultar extends JPanel {
 		add(separator);
 		
 		JRadioButton rbSi = new JRadioButton("Si");
+		rbSi.setBackground(new Color(51, 204, 255));
+		rbSi.setForeground(Color.WHITE);
 		rbSi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				estado=true;
@@ -131,6 +141,8 @@ public class VentanaMatriculaConsultar extends JPanel {
 		add(rbSi);
 		
 		JRadioButton rbNo = new JRadioButton("No");
+		rbNo.setBackground(new Color(51, 204, 255));
+		rbNo.setForeground(Color.WHITE);
 		rbNo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				estado=false;
@@ -153,10 +165,12 @@ public class VentanaMatriculaConsultar extends JPanel {
 		add(separator_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("¿Activo?");
+		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setBounds(454, 104, 69, 14);
 		add(lblNewLabel_1);
 		
 		JLabel lblCurso = new JLabel("Curso");
+		lblCurso.setForeground(Color.WHITE);
 		lblCurso.setBounds(354, 10, 55, 14);
 		add(lblCurso);
 		
